@@ -9,7 +9,7 @@ using XpInc.Core.MediatorHandler;
 namespace XpInc.ContaCliente.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class ContaClienteController : MainController
     {
         private readonly IUsuarioService _usuarioService;

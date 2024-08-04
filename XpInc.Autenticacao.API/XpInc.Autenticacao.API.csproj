@@ -30,7 +30,9 @@
   <ItemGroup>
     <ProjectReference Include="..\XpInc.ApiConfig\XpInc.ApiConfig.csproj" />
     <ProjectReference Include="..\XpInc.Bus\XpInc.Bus.csproj" />
+    <ProjectReference Include="..\XpInc.Cache\XpInc.Cache.csproj" />
     <ProjectReference Include="..\XpInc.Core\XpInc.Core.csproj" />
+    <ProjectReference Include="..\XpInc.Logs\XpInc.Logs.csproj" />
   </ItemGroup>
 
 </Project>

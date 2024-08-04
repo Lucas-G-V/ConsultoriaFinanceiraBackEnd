@@ -44,7 +44,8 @@ namespace XpInc.RendaFixa.API.Application.Commands.Handlers
             if (!entity.EhValido()) return entity.RetornaValidationResult();
 
             await _repository.Update(entity);
-            await _historicoRepository.Add(new RendaFixaHistorico(entity.UsuarioCadastroId, entity.Id, entity.Nome, entity.ValorMinimo, entity.ValorUnitario));
+            await _historicoRepository.Add(new RendaFixaHistorico(entity.UsuarioCadastroId, 
+                entity.Id, entity.Nome, entity.ValorMinimo, entity.ValorUnitario));
             var result = await PersistirDados(_repository.UnitOfWork);
             await AtualizaCache(entity, quantidadeAnterior);
             return result;
@@ -52,6 +53,7 @@ namespace XpInc.RendaFixa.API.Application.Commands.Handlers
 
         private async Task AtualizaCache(RendaFixaProduto rendaFixaProduto, int? quantidadeAnterior)
         {
+            await _mediator.BuscarQuery(new GetRendaFixaById(rendaFixaProduto.Id, true));
             if ((rendaFixaProduto.QuantidadeCotasDisponivel == 0 && quantidadeAnterior != 0)
                 || (rendaFixaProduto.QuantidadeCotasDisponivel > 0 && quantidadeAnterior == 0))
             {

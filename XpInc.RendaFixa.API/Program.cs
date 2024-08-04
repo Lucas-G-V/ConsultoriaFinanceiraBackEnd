@@ -6,6 +6,7 @@ using XpInc.ApiConfig.Config;
 using XpInc.RendaFixa.API.Configuration;
 using XpInc.RendaFixa.API.Data.Context;
 using XpInc.Email.Configuration;
+using XpInc.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,7 @@ builder.Services.RegisterServices();
 builder.Services.AddMemoryCacheConfig(builder.Configuration.GetConnectionString("Redis"));
 builder.Services.AddAutoMapperConfiguration();
 builder.Services.AddEmailSettings(builder.Configuration);
+builder.Services.AddLogHealthCheckConfig(builder.Configuration);
 
 var app = builder.Build();
 
@@ -33,8 +35,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseHealthChecksConfiguration();
 
 app.Run();

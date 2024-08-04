@@ -1,4 +1,6 @@
 using XpInc.Autenticacao.API.Configuration;
+using XpInc.Logs;
+using XpInc.Cache.Configuration;
 
 namespace XpInc.Autenticacao.API
 {
@@ -13,6 +15,8 @@ namespace XpInc.Autenticacao.API
             builder.Services.AddMessageBusConfiguration(builder.Configuration);
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddMemoryCacheConfig(builder.Configuration.GetConnectionString("Redis"));
+            builder.Services.AddLogHealthCheckConfig(builder.Configuration);
 
 
             var app = builder.Build();
@@ -24,9 +28,10 @@ namespace XpInc.Autenticacao.API
 
             app.UseHttpsRedirection();
 
+            app.UseRouting();
             app.UseAuthorization();
 
-            app.MapControllers();
+            app.UseHealthChecksConfiguration();
 
             await app.InitializeSeedData();
 

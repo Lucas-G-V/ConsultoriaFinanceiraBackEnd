@@ -71,7 +71,7 @@ namespace XpInc.UnitTest
         [Fact]
         public void EhValido_DeveRetornarTrue_ParaTransacaoValida()
         {
-            var transacaoValida = new TransacaoCliente(Guid.NewGuid(), TipoTransacao.Compra, StatusTransacao.Pendente, DateTime.Now, 10, 15);
+            var transacaoValida = new TransacaoCliente(Guid.NewGuid(), TipoTransacao.Compra, StatusTransacao.Pendente, DateTime.Now, 10, 15, produtoId: Guid.NewGuid());
 
             var resultado = transacaoValida.EhValido();
 

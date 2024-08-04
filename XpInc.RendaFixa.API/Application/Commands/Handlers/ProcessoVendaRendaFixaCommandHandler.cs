@@ -48,6 +48,7 @@ namespace XpInc.RendaFixa.API.Application.Commands.Handlers
 
         private async Task AtualizaCache(RendaFixaProduto rendaFixaProduto, int? quantidadeAnterior)
         {
+            await _mediator.BuscarQuery(new GetRendaFixaById(rendaFixaProduto.Id, true));
             if ((rendaFixaProduto.QuantidadeCotasDisponivel == 0 && quantidadeAnterior != 0)
                 || (rendaFixaProduto.QuantidadeCotasDisponivel > 0 && quantidadeAnterior == 0))
             {

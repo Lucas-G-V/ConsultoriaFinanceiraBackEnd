@@ -45,15 +45,15 @@ namespace XpInc.RendaFixa.API.Services
 
                 foreach (var admin in emailsAdministradores)
                 {
-                    await emailService.EnviaEmail(
-                        admin,
-                        "Administrador",
-                        "lucasgvettorazzo1505@gmail.com",
-                        "Consultoria Financeira",
-                        "Produtos Vencendo",
-                        textoBody,
-                        $"<div>{textoBody}</div>"
-                    );
+                    //await emailService.EnviaEmail(
+                    //    admin,
+                    //    "Administrador",
+                    //    "lucasgvettorazzo1505@gmail.com",
+                    //    "Consultoria Financeira",
+                    //    "Produtos Vencendo",
+                    //    textoBody,
+                    //    $"<div>{textoBody}</div>"
+                    //);
                 }
             }
         }

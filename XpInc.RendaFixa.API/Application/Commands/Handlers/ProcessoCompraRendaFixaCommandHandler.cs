@@ -45,22 +45,17 @@ namespace XpInc.RendaFixa.API.Application.Commands.Handlers
             await _repository.Update(entity);
             var result = await PersistirDados(_repository.UnitOfWork);
             await AtualizaCache(entity, quantidadeAnterior);
-            await EmiteTransacaoAprovada();
             return result;
         }
 
         private async Task AtualizaCache(RendaFixaProduto rendaFixaProduto, int? quantidadeAnterior)
         {
+            await _mediator.BuscarQuery(new GetRendaFixaById(rendaFixaProduto.Id, true));
             if ((rendaFixaProduto.QuantidadeCotasDisponivel == 0 && quantidadeAnterior != 0)
                 || (rendaFixaProduto.QuantidadeCotasDisponivel > 0 && quantidadeAnterior == 0))
             {
                 await _mediator.BuscarQuery(new GetAllRendaFixaQuery(true));
             }
-        }
-
-        private async Task EmiteTransacaoAprovada()
-        {
-
         }
     }
 }

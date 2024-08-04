@@ -31,6 +31,7 @@
     <ProjectReference Include="..\XpInc.Cache\XpInc.Cache.csproj" />
     <ProjectReference Include="..\XpInc.Core\XpInc.Core.csproj" />
     <ProjectReference Include="..\XpInc.Email\XpInc.Email.csproj" />
+    <ProjectReference Include="..\XpInc.Logs\XpInc.Logs.csproj" />
   </ItemGroup>
 
 </Project>

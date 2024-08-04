@@ -5,6 +5,7 @@ using XpInc.ContaCliente.API.Configuration;
 using XpInc.ContaCliente.API.Data.Contexts;
 using XpInc.Cache.Configuration;
 using XpInc.ApiConfig.Config;
+using XpInc.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 builder.Services.RegisterServices();
 builder.Services.AddMemoryCacheConfig(builder.Configuration.GetConnectionString("Redis"));
+builder.Services.AddLogHealthCheckConfig(builder.Configuration);
+
 
 
 var app = builder.Build();
@@ -30,8 +33,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseRouting();
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseHealthChecksConfiguration();
 
 app.Run();

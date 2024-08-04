@@ -32,7 +32,7 @@ namespace XpInc.Transacao.API.Controllers
         public async Task<IActionResult> Deposito([FromBody] DepositoSaqueRequest request)
         {
             var command = _mapper.Map<CreateTransacaoCommand>(request);
-            command.NomeProduto = "Venda";
+            command.NomeProduto = "Depósito";
             command.Tipo = TipoTransacao.Deposito;
             var result = await _mediator.EnviarComando(command);
             if (!result.IsValid) return CustomResponse(result);

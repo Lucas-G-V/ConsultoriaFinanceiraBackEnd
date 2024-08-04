@@ -14,7 +14,7 @@ using XpInc.RendaFixa.API.Models.Entities;
 namespace XpInc.RendaFixa.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class RendaFixaController : MainController
     {
         private readonly IMediatorHandler _mediator;
@@ -35,7 +35,7 @@ namespace XpInc.RendaFixa.API.Controllers
             return NoContent();
         }
 
-        [HttpPut("AlteraQuantidadeCotasDisponivel")]
+        [HttpPut("AlteraProdutoFinanceiro")]
         [ClaimsAuthorize("RendaFixa", "Editar")]
         public async Task<IActionResult> Update([FromBody] UpdateRendaFixaRequest request)
         {
