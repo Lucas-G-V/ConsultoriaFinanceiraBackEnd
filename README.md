@@ -95,7 +95,10 @@ dotnet test
 ```json
 {
   "login": "email",
-  "senha": "sua senha"
+  "senha": "string",
+  "nomeCompleto": "string",
+  "cpf": "string",
+  "telefoneCelular": "string"
 }
 ```
 **Resposta**:
@@ -131,9 +134,6 @@ dotnet test
 
 **Descrição**: Verifica as informações da conta do usuário resumidamente. Informações como número de telefone, cpf, saldo da conta e total investido.
 
-**Parâmetros**:
-
-
 **Resposta**:
 - **200 OK**: Retorna as informações do usuário.
 - **400 Bad Request**: Se houver erros de validação.
@@ -147,7 +147,7 @@ dotnet test
 
 **Método**: POST /api/RendaFixa
 
-**Descrição**: Cria um novo produto de renda fixa, apenas produtos baseados em cotas foram testados. A implementação de produtos não baseados em cotas ainda está sendo desenvolvida.
+**Descrição**: Cria um novo produto de renda fixa, apenas produtos baseados em cotas foram testados. A implementação de produtos não baseados em cotas ainda está sendo desenvolvida. Por isso há algumas restrições na hora do post que quando tivesse mais gamas implementadas de renda fixa, não teriam.
 
 **Requisitos de Autorização**: Precisa ser um usuário administrador.
 
@@ -189,18 +189,11 @@ dotnet test
 - **Request Body**: 
 ```json
 {
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "quantidadeCotasDisponivel": 0,
   "nome": "string",
   "valorMinimo": 0,
   "valorUnitario": 0,
-  "baseadoEmCotas": true,
-  "dataVencimento": "2024-08-04T20:11:11.109Z",
-  "tipoTaxa": 1 (1 -> Percentual), (2 -> Fixa)
-  "taxaAnual": 0,
-  "taxaAdicional": 0,
-  "indexador": 1 (1 -> CDI, 2 -> IPCA, 3 -> SELIC, 4 -> Outros),
-  "frequencia": 1,
-  "quantidadeCotasInicial": 0,
-  "quantidadeCotasDisponivel": 0,
   "emailAdministrador": "string"
 }
 ```
@@ -356,16 +349,8 @@ dotnet test
 
 **Requisitos de Autorização**: Deve ser um cliente.
 
-**Parâmetros**:
-- **Request Body**:
-```json
-{
-  "produtoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "nomeProduto": "string",
-  "quantidade": 0,
-  "valorUnitario": 0
-}
-```
+
+
 **Resposta**:
 - **200 OK**: Retorna os dados do cliente.
 - **400 Bad Request**: Se houver erros de validação.
@@ -380,16 +365,7 @@ dotnet test
 
 **Requisitos de Autorização**: Deve ser um administrador.
 
-**Parâmetros**:
-- **Request Body**:
-```json
-{
-  "produtoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "nomeProduto": "string",
-  "quantidade": 0,
-  "valorUnitario": 0
-}
-```
+
 **Resposta**:
 - **200 OK**: Retorna os dados do cliente.
 - **400 Bad Request**: Se houver erros de validação.
