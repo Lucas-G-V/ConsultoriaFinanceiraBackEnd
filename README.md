@@ -58,6 +58,50 @@ dotnet test
 
 ## Modo de Uso e Documentação da API
 
+#### Registrar Novo Usuário Administrador
+
+**Método**: POST /api/Usuarios/ContaAdmin
+
+**Descrição**: Para utilizar o sistema, acompanhar e criar Produtos Financeiros crie um usuário Administrador.
+
+**Requisitos de Autorização**: Como é uma aplicação teste, a criação de usuários é livre.
+
+**Parâmetros**:
+- **Request Body**: 
+```json
+{
+  "login": "email",
+  "senha": "sua senha"
+}
+```
+**Resposta**:
+- **204 No Content**: Se o usuário for registrado com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
+#### Registrar Novo Usuário Cliente
+
+**Método**: POST /api/Usuarios/ContaCliente
+
+**Descrição**: Para utilizar o sistema, acompanhar e criar Transações Financeiras, crie um Cliente, no seu processo de criação, ele comunicará a API ContaCliente e adicionará a ela um Saldo Disponível de 0. Ele verifica se há uma conta com o mesmo CPF, então cuidado ao cadastrar mais de um usuário, o login também deve ser único, incluindo a base de Administradores.
+
+**Requisitos de Autorização**: Como é uma aplicação teste, a criação de clientes é livre.
+
+**Parâmetros**:
+- **Request Body**:
+```json
+{
+  "login": "email",
+  "senha": "sua senha"
+}
+```
+**Resposta**:
+- **204 No Content**: Se o usuário for registrado com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
 ### Transações
 
 #### Criar Transação
@@ -145,22 +189,6 @@ dotnet test
 
 ---
 
-#### Registrar Novo Usuário Administrador
-
-**Método**: POST /api/ContaAdmin
-
-**Descrição**: Registra um novo usuário administrador no sistema.
-
-**Requisitos de Autorização**: Nenhum (requer autenticação do administrador).
-
-**Parâmetros**:
-- **Request Body**: `CreateUserAdminRequest` - Objeto contendo os dados necessários para criar um novo usuário administrador.
-
-**Resposta**:
-- **200 No Content**: Se o usuário for registrado com sucesso.
-- **400 Bad Request**: Se houver erros de validação.
-
----
 
 ## Notas Adicionais
 
