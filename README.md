@@ -134,9 +134,6 @@ dotnet test
 
 **Descrição**: Verifica as informações da conta do usuário resumidamente. Informações como número de telefone, cpf, saldo da conta e total investido.
 
-**Parâmetros**:
-
-
 **Resposta**:
 - **200 OK**: Retorna as informações do usuário.
 - **400 Bad Request**: Se houver erros de validação.
