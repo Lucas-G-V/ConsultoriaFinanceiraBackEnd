@@ -147,7 +147,7 @@ dotnet test
 
 **Método**: POST /api/RendaFixa
 
-**Descrição**: Cria um novo produto de renda fixa, apenas produtos baseados em cotas foram testados. A implementação de produtos não baseados em cotas ainda está sendo desenvolvida.
+**Descrição**: Cria um novo produto de renda fixa, apenas produtos baseados em cotas foram testados. A implementação de produtos não baseados em cotas ainda está sendo desenvolvida. Por isso há algumas restrições na hora do post que quando tivesse mais gamas implementadas de renda fixa, não teriam.
 
 **Requisitos de Autorização**: Precisa ser um usuário administrador.
 
