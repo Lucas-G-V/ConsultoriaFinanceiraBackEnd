@@ -189,18 +189,11 @@ dotnet test
 - **Request Body**: 
 ```json
 {
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "quantidadeCotasDisponivel": 0,
   "nome": "string",
   "valorMinimo": 0,
   "valorUnitario": 0,
-  "baseadoEmCotas": true,
-  "dataVencimento": "2024-08-04T20:11:11.109Z",
-  "tipoTaxa": 1 (1 -> Percentual), (2 -> Fixa)
-  "taxaAnual": 0,
-  "taxaAdicional": 0,
-  "indexador": 1 (1 -> CDI, 2 -> IPCA, 3 -> SELIC, 4 -> Outros),
-  "frequencia": 1,
-  "quantidadeCotasInicial": 0,
-  "quantidadeCotasDisponivel": 0,
   "emailAdministrador": "string"
 }
 ```
