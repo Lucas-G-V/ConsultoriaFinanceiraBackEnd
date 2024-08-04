@@ -6,9 +6,8 @@ namespace XpInc.Transacao.API.Models.DTO.Request
     {
         [Required]
         public Guid ProdutoId { get; set; }
-        public string? NomeProduto { get; set; }
-        public decimal? Quantidade { get; set; }
-        public decimal? ValorUnitario { get; set; }
-        public decimal ValorTotal { get; set; }
+        public string NomeProduto { get; set; }
+        public int Quantidade { get; set; }
+        public decimal ValorUnitario { get; set; }
     }
 }

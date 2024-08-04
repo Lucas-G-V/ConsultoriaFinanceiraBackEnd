@@ -67,12 +67,11 @@ namespace XpInc.Autenticacao.API.Controllers
 
         private async Task AddClaimsAdmin(IdentityUser adminUser)
         {
-            await _userManager.AddClaimAsync(adminUser, new Claim("Transacao", "Ler"));
-            await _userManager.AddClaimAsync(adminUser, new Claim("RendaFixa", "Ler"));
+            await _userManager.AddClaimAsync(adminUser, new Claim("Transacao", "LerRestrito"));
             await _userManager.AddClaimAsync(adminUser, new Claim("RendaFixa", "LerRestrito"));
             await _userManager.AddClaimAsync(adminUser, new Claim("RendaFixa", "Escrever"));
             await _userManager.AddClaimAsync(adminUser, new Claim("RendaFixa", "Editar"));
-            await _userManager.AddClaimAsync(adminUser, new Claim("ContaCliente", "Ler"));
+            await _userManager.AddClaimAsync(adminUser, new Claim("ContaCliente", "LerRestrito"));
         }
 
         [HttpPost("ContaCliente")]

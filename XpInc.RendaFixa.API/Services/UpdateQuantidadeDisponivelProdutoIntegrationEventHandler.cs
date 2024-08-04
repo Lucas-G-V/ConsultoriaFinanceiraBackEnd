@@ -42,13 +42,22 @@ namespace XpInc.RendaFixa.API.Services
 
         private async Task<ResponseMessage> RegistrarAlteracaoQuantidadeAcao(UpdateQuantidadeDisponivelProdutoIntegrationEvent message)
         {
-            var clienteCommand = new UpdateRendaFixaCommand(message.IdProduto, null, message.QuantidadeCotas);
             ValidationResult sucesso;
 
             using (var scope = _serviceProvider.CreateScope())
             {
                 var mediator = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
-                sucesso = await mediator.EnviarComando(clienteCommand);
+
+                if (message.EhCompra)
+                {
+                    var clienteCommand = new ProcessoCompraRendaFixaCommand(message.IdProduto, message.QuantidadeCotas, message.Nome, message.ValorUnitario);
+                    sucesso = await mediator.EnviarComando(clienteCommand);
+                }
+                else
+                {
+                    var clienteCommand = new ProcessoVendaRendaFixaCommand(message.IdProduto, message.QuantidadeCotas, message.Nome, message.ValorUnitario);
+                    sucesso = await mediator.EnviarComando(clienteCommand);
+                }
             }
 
             return new ResponseMessage(sucesso);

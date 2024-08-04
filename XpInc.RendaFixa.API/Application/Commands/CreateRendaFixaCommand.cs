@@ -17,5 +17,6 @@ namespace XpInc.RendaFixa.API.Application.Commands
         public FrequenciaPagamento Frequencia { get; set; }
         public int? QuantidadeCotasInicial { get; set; }
         public int? QuantidadeCotasDisponivel { get; set; }
+        public string EmailAdministrador { get; set; }
     }
 }

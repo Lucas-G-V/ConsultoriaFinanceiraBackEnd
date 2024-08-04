@@ -56,9 +56,14 @@ namespace XpInc.Transacao.API.Application.Commands.Handlers
             if(transacao.Quantidade != null ||
                 (transacao.Tipo == TipoTransacao.Compra || transacao.Tipo == TipoTransacao.Venda))
             {
-                var debitar = (transacao.Tipo == TipoTransacao.Compra) ? transacao.Quantidade.Value : -1 * transacao.Quantidade.Value;
-                var result = await _bus.RequestAsync<UpdateQuantidadeDisponivelProdutoIntegrationEvent, ResponseMessage>(
-                    new UpdateQuantidadeDisponivelProdutoIntegrationEvent(transacao.ProdutoId.Value, (int)debitar));
+                var eventMessage = new UpdateQuantidadeDisponivelProdutoIntegrationEvent(
+                    transacao.ProdutoId.Value,
+                    (int)transacao.Quantidade,
+                    transacao.NomeProduto,
+                    transacao.ValorUnitario.Value,
+                    transacao.Tipo == TipoTransacao.Compra
+                );
+                var result = await _bus.RequestAsync<UpdateQuantidadeDisponivelProdutoIntegrationEvent, ResponseMessage>(eventMessage);
                 if (result.ValidationResult.IsValid) transacao.Status = StatusTransacao.Concluida;
                 return result.ValidationResult;
             }

@@ -74,7 +74,7 @@ namespace XpInc.Transacao.API.Controllers
         }
 
         [HttpGet("GetExtratoCliente")]
-        [ClaimsAuthorize("Transacao", "Escrever")]
+        [ClaimsAuthorize("Transacao", "Ler")]
         public async Task<ActionResult<IEnumerable<TransacaoResponse>>> GetExtratoCliente()
         {
             var clientId = _usuarioService.GetUserId();
@@ -84,7 +84,7 @@ namespace XpInc.Transacao.API.Controllers
         }
 
         [HttpGet("GetExtratoClienteAdmin/{idCliente}")]
-        [ClaimsAuthorize("Transacao", "Escrever")]
+        [ClaimsAuthorize("Transacao", "LerRestrito")]
         public async Task<IActionResult> GetExtradoClienteAdmin(Guid idCliente)
         {
             var query = new BuscaTransacoesClientesQuery(idCliente);

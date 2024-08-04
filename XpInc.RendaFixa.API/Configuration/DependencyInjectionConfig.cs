@@ -26,6 +26,8 @@ namespace XpInc.RendaFixa.API.Configuration
 
             services.AddScoped<IRequestHandler<CreateRendaFixaCommand, ValidationResult>, CreateRendaFixaCommandHandler>();
             services.AddScoped<IRequestHandler<UpdateRendaFixaCommand, ValidationResult>, UpdateRendaFixaCommandHandler>();
+            services.AddScoped<IRequestHandler<ProcessoCompraRendaFixaCommand, ValidationResult>, ProcessoCompraRendaFixaCommandHandler>();
+            
             services.AddScoped<IRequestHandler<UpdateRendaFixaAdminCommand, ValidationResult>, UpdateRendaFixaAdminCommandHandler>();
             services.AddScoped<IRequestHandler<GetAllRendaFixaQuery, IEnumerable<RendaFixaProduto>>, GetAllRendaFixaQueryHandler>();
             services.AddScoped<IRequestHandler<GetRendaFixaById, RendaFixaDetalhadaResponse>, GetRendaFixaByIdQueryHandler>();
