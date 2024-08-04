@@ -58,7 +58,7 @@ dotnet test
 
 ### 5. Configure o token do SendGrid para disparar emails
 
-Altere no appsettings.json da api de RendaFixa, o token do SendGrid.
+Altere no appsettings.json da api de RendaFixa o token do SendGrid.
 
 ## Modo de Uso e Documentação da API
 
@@ -391,5 +391,6 @@ Este é um resumo dos principais endpoints disponíveis na aplicação. Para det
 - Adicionar os outros produtos financeiros
 - Especializar ainda mais a classe RendaFixa para aceitar diferentes parâmetros da RendaFixa e validar essas regras na venda e compra dos produtos
 - Adicionar o serviço de email em uma WorkerService, sendo utilizado de forma desaclopada da RendaFixa
+- Balanceador de carga para criar mais instâncias da API quando houver muitas requisições (O Serviço de email também tem que ser apartado por causa disso, assim se tiver mais de uma renda fixa do jeito que está hoje vai enviar o email mais de uma vez por dia)
 
 
