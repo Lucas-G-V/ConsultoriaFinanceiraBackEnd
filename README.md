@@ -95,7 +95,10 @@ dotnet test
 ```json
 {
   "login": "email",
-  "senha": "sua senha"
+  "senha": "string",
+  "nomeCompleto": "string",
+  "cpf": "string",
+  "telefoneCelular": "string"
 }
 ```
 **Resposta**:
