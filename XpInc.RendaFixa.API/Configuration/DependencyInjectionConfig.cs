@@ -1,6 +1,7 @@
 ﻿using FluentValidation.Results;
 using MediatR;
 using XpInc.Core.MediatorHandler;
+using XpInc.Email;
 using XpInc.RendaFixa.API.Application.Commands;
 using XpInc.RendaFixa.API.Application.Commands.Handlers;
 using XpInc.RendaFixa.API.Application.Queries;
@@ -16,6 +17,8 @@ namespace XpInc.RendaFixa.API.Configuration
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddScoped<IEmailService, EmailService>();
+
             services.AddScoped<IRendaFixaRepository, RendaFixaRepository>();
             services.AddScoped<RendaFixaContext>();
 

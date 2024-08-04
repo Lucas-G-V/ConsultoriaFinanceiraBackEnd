@@ -8,7 +8,8 @@ namespace XpInc.RendaFixa.API.Configuration
             IConfiguration configuration)
         {
             services.AddMessageBus(configuration?["MessageBusConnection:MessageBus"])
-                .AddHostedService<UpdateQuantidadeDisponivelProdutoIntegrationEventHandler>();
+                .AddHostedService<UpdateQuantidadeDisponivelProdutoIntegrationEventHandler>()
+                .AddHostedService<EnviaEmailProdutosProximosVencimento>();
         }
     }
 }
