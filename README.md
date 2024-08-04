@@ -56,6 +56,10 @@ Para testar, utilize o comando:
 dotnet test
 ```
 
+### 5. Configure o token do SendGrid para disparar emails
+
+Altere no appsettings.json da api de RendaFixa, o token do SendGrid.
+
 ## Modo de Uso e Documentação da API
 
 ### Usuários
