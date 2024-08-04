@@ -25,7 +25,7 @@ A aplicação é dividida em múltiplos microsserviços, cada um responsável po
 
 Cada API utiliza o Entity Framework Core para interagir com o banco de dados. Após clonar o repositório e abrir a solução no Visual Studio ou em um editor de sua escolha, você precisa atualizar o banco de dados. 
 
-Para isso, abra o **Console do Gerenciador de Pacotes** no Visual Studio e execute o comando:
+Para isso, abra o **Console do Gerenciador de Pacotes** no Visual Studio, selecione a API referente e execute o comando:
 
 ```powershell
 Update-Database
