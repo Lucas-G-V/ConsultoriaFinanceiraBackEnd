@@ -15,7 +15,7 @@ namespace XpInc.Transacao.API.Data.Repositories
 
         public async Task<IEnumerable<TransacaoCliente>> GetByIdCliente(Guid idCliente)
         {
-            return await _dbSet.Where(x => x.Ativo == true && x.Status == StatusTransacao.Concluida)
+            return await _dbSet.Where(x => x.Ativo == true && x.Status == StatusTransacao.Concluida && x.ClienteId == idCliente)
                 .OrderByDescending(x => x.DataTransacao)
                 .ToArrayAsync();
         }

@@ -8,7 +8,7 @@ namespace XpInc.ContaCliente.API.Application.Queries
         public Guid IdCliente { get; set; }
         public SaldoClienteQuery(Guid idCliente)
         {
-            IdCliente = IdCliente;
+            IdCliente = idCliente;
         }
     }
 }

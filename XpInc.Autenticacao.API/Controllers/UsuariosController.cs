@@ -8,6 +8,7 @@ using XpInc.Autenticacao.API.Models.Request;
 using XpInc.Bus;
 using XpInc.Core.Domain.IntegrantionModels;
 using XpInc.Core.Messages.IntegrationMessages;
+using XpInc.Core.Utils;
 
 namespace XpInc.Autenticacao.API.Controllers
 {
@@ -92,7 +93,8 @@ namespace XpInc.Autenticacao.API.Controllers
             {
                 await AddRolesCliente(user);
                 await AddClaimsCliente(user);
-
+                usuarioRegistro.CPF = FormatarString.ExtractNumbers(usuarioRegistro.CPF);
+                usuarioRegistro.TelefoneCelular = FormatarString.ExtractNumbers(usuarioRegistro.TelefoneCelular);
                 var resultCliente = await RegistrarClienteModel(usuarioRegistro);
                 if (resultCliente.ValidationResult.IsValid) return NoContent();
                 return CustomResponse(resultCliente.ValidationResult);
