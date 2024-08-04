@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XpInc.RendaFixa.API.Data.Context;
 
@@ -11,9 +12,11 @@ using XpInc.RendaFixa.API.Data.Context;
 namespace XpInc.RendaFixa.API.Migrations
 {
     [DbContext(typeof(RendaFixaContext))]
-    partial class RendaFixaContextModelSnapshot : ModelSnapshot
+    [Migration("20240804155834_AdicionandoHistoricoDeValores")]
+    partial class AdicionandoHistoricoDeValores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

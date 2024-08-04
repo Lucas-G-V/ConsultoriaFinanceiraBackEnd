@@ -1,12 +1,11 @@
-﻿using XpInc.RendaFixa.API.Models.Enum;
+﻿using XpInc.Core.Messages;
 
-namespace XpInc.RendaFixa.API.Models.DTO.Request
+namespace XpInc.RendaFixa.API.Application.Commands
 {
-    public class UpdateRendaFixaRequest
+    public class UpdateRendaFixaAdminCommand : Command
     {
         public Guid Id { get; set; }
         public int? QuantidadeCotasDisponivel { get; set; }
-        public string Nome { get; set; }
         public decimal ValorMinimo { get; set; }
         public decimal ValorUnitario { get; set; }
         public string EmailAdministrador { get; set; }

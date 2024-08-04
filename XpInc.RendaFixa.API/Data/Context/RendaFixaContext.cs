@@ -20,6 +20,7 @@ namespace XpInc.RendaFixa.API.Data.Context
         }
 
         public DbSet<RendaFixaProduto> RendaFixaProduto { get; set; }
+        public DbSet<RendaFixaHistorico> RendaFixaHistorico { get; set; }
 
         public async Task<bool> Commit()
         {
@@ -30,6 +31,7 @@ namespace XpInc.RendaFixa.API.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
@@ -46,6 +48,14 @@ namespace XpInc.RendaFixa.API.Data.Context
                     }
                 }
             }
+
+            modelBuilder.Entity<RendaFixaHistorico>(entity =>
+            {
+                entity.HasOne<RendaFixaProduto>()
+                    .WithMany()
+                    .HasForeignKey(e => e.ProdutoId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
         }
     }
 

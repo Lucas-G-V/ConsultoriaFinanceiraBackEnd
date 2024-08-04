@@ -1,10 +1,11 @@
-﻿using XpInc.Transacao.API.Models.Enums;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace XpInc.Transacao.API.Models.DTO.Request
 {
-    public class CreateTransacaoRequest
+    public class CompraVendaRequest
     {
-        public Guid? ProdutoId { get; set; }
+        [Required]
+        public Guid ProdutoId { get; set; }
         public string? NomeProduto { get; set; }
         public decimal? Quantidade { get; set; }
         public decimal? ValorUnitario { get; set; }

@@ -4,6 +4,7 @@ using XpInc.Core.MediatorHandler;
 using XpInc.Core.Messages.IntegrationMessages;
 using XpInc.Email;
 using XpInc.RendaFixa.API.Application.Commands;
+using XpInc.RendaFixa.API.Application.Queries;
 
 namespace XpInc.RendaFixa.API.Services
 {
@@ -19,7 +20,7 @@ namespace XpInc.RendaFixa.API.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _timer = new Timer(EnviaEmailProdutoProximoVencimento, null, TimeSpan.Zero, TimeSpan.FromMinutes(1));
+            _timer = new Timer(EnviaEmailProdutoProximoVencimento, null, TimeSpan.Zero, TimeSpan.FromDays(1));
             return Task.CompletedTask;
         }
 
@@ -27,18 +28,33 @@ namespace XpInc.RendaFixa.API.Services
         {
             using (var scope = _serviceProvider.CreateScope())
             {
-                var email = scope.ServiceProvider.GetRequiredService<IEmailService>();
+                var emailService = scope.ServiceProvider.GetRequiredService<IEmailService>();
+                var mediator = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
 
+                var query = new GetRendaFixaProximaVencimentoQuery(DateTime.Now.Date);
+                var rendaFixaList = await mediator.BuscarQuery(query);
 
-                await email.EnviaEmail(
-                    "lucasgvettorazzo@hotmail.com",
-                    "Lucas",
-                    "lucasgvettorazzo1505@gmail.com",
-                    "Consultoria Financeira",
-                    "Produtos Vencendo",
-                    "Estes produtos estão prestes a vencer",
-                    "<div>Estes produtos estão prestes a vencer</div>"
-                );
+                var emailsAdministradores = rendaFixaList
+                    .Where(p => p.EmailAdministrador != null)
+                    .Select(p => p.EmailAdministrador)
+                    .Distinct()
+                    .ToList();
+
+                var textoBody = "Estes produtos estão prestes a vencer: " +
+                                string.Join(";", rendaFixaList.Select(p => p.Nome));
+
+                foreach (var admin in emailsAdministradores)
+                {
+                    //await emailService.EnviaEmail(
+                    //    admin,
+                    //    "Administrador",
+                    //    "lucasgvettorazzo1505@gmail.com",
+                    //    "Consultoria Financeira",
+                    //    "Produtos Vencendo",
+                    //    textoBody,
+                    //    $"<div>{textoBody}</div>"
+                    //);
+                }
             }
         }
 

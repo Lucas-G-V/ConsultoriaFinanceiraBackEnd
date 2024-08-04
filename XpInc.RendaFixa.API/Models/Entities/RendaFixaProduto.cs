@@ -20,6 +20,7 @@ namespace XpInc.RendaFixa.API.Models.Entities
         public FrequenciaPagamento Frequencia { get; set; }
         public int? QuantidadeCotasInicial { get; set; }
         public int? QuantidadeCotasDisponivel { get; set; }
+        public string? EmailAdministrador { get; set; }
         public RendaFixaProduto(Guid usuarioCadastroId, string nome, decimal valorMinimo, decimal valorUnitario,
             bool baseadoEmCotas, DateTime dataVencimento, TipoTaxa tipoTaxa, decimal taxaAnual,
             decimal taxaAdicional, Indexador indexador, FrequenciaPagamento frequencia, int? quantidadeCotasInicial = null, 

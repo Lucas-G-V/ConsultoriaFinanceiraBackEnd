@@ -5,6 +5,7 @@ using XpInc.Cache.Configuration;
 using XpInc.ApiConfig.Config;
 using XpInc.RendaFixa.API.Configuration;
 using XpInc.RendaFixa.API.Data.Context;
+using XpInc.Email.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,7 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.Get
 builder.Services.RegisterServices();
 builder.Services.AddMemoryCacheConfig(builder.Configuration.GetConnectionString("Redis"));
 builder.Services.AddAutoMapperConfiguration();
+builder.Services.AddEmailSettings(builder.Configuration);
 
 var app = builder.Build();
 

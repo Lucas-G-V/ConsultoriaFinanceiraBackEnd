@@ -8,6 +8,7 @@ using XpInc.Core.MediatorHandler;
 using XpInc.RendaFixa.API.Application.Commands;
 using XpInc.RendaFixa.API.Application.Queries;
 using XpInc.RendaFixa.API.Models.DTO.Request;
+using XpInc.RendaFixa.API.Models.DTO.Response;
 using XpInc.RendaFixa.API.Models.Entities;
 
 namespace XpInc.RendaFixa.API.Controllers
@@ -38,17 +39,35 @@ namespace XpInc.RendaFixa.API.Controllers
         [ClaimsAuthorize("RendaFixa", "Editar")]
         public async Task<IActionResult> Update([FromBody] UpdateRendaFixaRequest request)
         {
-            var command = _mapper.Map<UpdateRendaFixaCommand>(request);
+            var command = _mapper.Map<UpdateRendaFixaAdminCommand>(request);
             var result = await _mediator.EnviarComando(command);
             if (!result.IsValid) return CustomResponse(result);
             return NoContent();
         }
 
         [HttpGet("GetAll")]
-        [ClaimsAuthorize("RendaFixa", "Ler")]
+        [ClaimsAuthorize("RendaFixa", "LerRestrito")]
         public async Task<ActionResult<IEnumerable<RendaFixaProduto>>> GetAll()
         {
             var query = new GetAllRendaFixaQuery();
+            var rendaFixaList = await _mediator.BuscarQuery(query);
+            return Ok(rendaFixaList);
+        }
+
+        [HttpGet("GetAllForClientes")]
+        [ClaimsAuthorize("RendaFixa", "Ler")]
+        public async Task<ActionResult<IEnumerable<RendaFixaProduto>>> GetAllForClientes()
+        {
+            var query = new GetAllRendaFixaQuery();
+            var rendaFixaList = await _mediator.BuscarQuery(query);
+            return Ok(rendaFixaList);
+        }
+
+        [HttpGet("GetById/{id}")]
+        [ClaimsAuthorize("RendaFixa", "Ler")]
+        public async Task<ActionResult<RendaFixaDetalhadaResponse>> GetById(Guid id)
+        {
+            var query = new GetRendaFixaById(id);
             var rendaFixaList = await _mediator.BuscarQuery(query);
             return Ok(rendaFixaList);
         }

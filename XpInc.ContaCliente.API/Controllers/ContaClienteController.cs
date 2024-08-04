@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using XpInc.ApiConfig.Controllers;
 using XpInc.ApiConfig.Services;
 using XpInc.Cache;
+using XpInc.ContaCliente.API.Application.Queries;
+using XpInc.ContaCliente.API.Models.Entities;
+using XpInc.Core.MediatorHandler;
 
 namespace XpInc.ContaCliente.API.Controllers
 {
@@ -9,32 +12,23 @@ namespace XpInc.ContaCliente.API.Controllers
     [Route("[controller]")]
     public class ContaClienteController : MainController
     {
-        private readonly IMemoryCacheService _cache;
         private readonly IUsuarioService _usuarioService;
-        public ContaClienteController(IMemoryCacheService cache, IUsuarioService usuarioService)
+        private readonly IMediatorHandler _mediator;
+        public ContaClienteController(IUsuarioService usuarioService, IMediatorHandler mediatorHandler)
         {
-            _cache = cache;
             _usuarioService = usuarioService;
+            _mediator = mediatorHandler;
         }
 
-        [HttpGet("GetMemory")]
-        [ClaimsAuthorize("ContaCliente", "Escrever")]
-        public async Task<IActionResult>  GetMemory()
+        [HttpGet("GetSaldoAtual")]
+        [ClaimsAuthorize("ContaCliente", "Ler")]
+        public async Task<ActionResult<ContaClienteSaldo>>  GetDatosAtuais()
         {
-            var user = new User("Cleber Machado");
-            await _cache.AddMemoryCache<User>("1", user);
-            var userResponse = await _cache.GetById<User>("1");
-            var userId = _usuarioService.GetUserId();
+            var clientId = _usuarioService.GetUserId();
+            var query = new SaldoClienteQuery(clientId);
+            var saldoAtual = await _mediator.BuscarQuery(query);
 
-            return Ok(userId);
-        }
-    }
-    public class User
-    {
-        public string Nome { get; set; }
-        public User(string nome)
-        {
-            Nome = nome;
+            return Ok(saldoAtual);
         }
     }
 }

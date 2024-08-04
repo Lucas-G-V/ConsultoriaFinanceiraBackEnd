@@ -1,8 +1,8 @@
 ﻿using XpInc.RendaFixa.API.Models.Enum;
 
-namespace XpInc.RendaFixa.API.Models.DTO.Request
+namespace XpInc.RendaFixa.API.Models.DTO.Response
 {
-    public class CreateRendaFixaRequest
+    public class RendaFixaDetalhadaResponse
     {
         public string Nome { get; set; }
         public decimal ValorMinimo { get; set; }
@@ -16,6 +16,6 @@ namespace XpInc.RendaFixa.API.Models.DTO.Request
         public FrequenciaPagamento Frequencia { get; set; }
         public int? QuantidadeCotasInicial { get; set; }
         public int? QuantidadeCotasDisponivel { get; set; }
-        public string EmailAdministrador { get; set; }
+        public IEnumerable<RendaFixaHistoricoResponse> Historico { get; set; }
     }
 }
