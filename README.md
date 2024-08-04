@@ -56,3 +56,116 @@ Para testar, utilize o comando:
 dotnet test
 ```
 
+## Modo de Uso e Documentação da API
+
+### Transações
+
+#### Criar Transação
+
+**Método**: POST /api/transacoes
+
+**Descrição**: Cria uma nova transação. A transação será criada com o status `Pendente` e a data atual.
+
+**Requisitos de Autorização**: Deve ter a permissão `Escrever` para a entidade `Transacao`.
+
+**Parâmetros**:
+- **Request Body**: `CreateTransacaoRequest` - Objeto contendo os dados necessários para criar uma nova transação.
+
+**Resposta**:
+- **200 No Content**: Se a transação for criada com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
+### Produtos de Renda Fixa
+
+#### Criar Produto de Renda Fixa
+
+**Método**: POST /api/rendaFixa
+
+**Descrição**: Cria um novo produto de renda fixa.
+
+**Requisitos de Autorização**: Deve ter a permissão `Escrever` para a entidade `RendaFixa`.
+
+**Parâmetros**:
+- **Request Body**: `CreateRendaFixaRequest` - Objeto contendo os dados necessários para criar um novo produto de renda fixa.
+
+**Resposta**:
+- **200 No Content**: Se o produto de renda fixa for criado com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
+#### Atualizar Quantidade de Cotas Disponível
+
+**Método**: PUT /api/rendaFixa/AlteraQuantidadeCotasDisponivel
+
+**Descrição**: Atualiza a quantidade de cotas disponíveis de um produto de renda fixa existente.
+
+**Requisitos de Autorização**: Deve ter a permissão `Editar` para a entidade `RendaFixa`.
+
+**Parâmetros**:
+- **Request Body**: `UpdateRendaFixaRequest` - Objeto contendo os dados necessários para atualizar a quantidade de cotas de um produto de renda fixa.
+
+**Resposta**:
+- **200 No Content**: Se a quantidade de cotas for atualizada com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
+#### Obter Todos os Produtos de Renda Fixa
+
+**Método**: GET /api/rendaFixa/GetAll
+
+**Descrição**: Recupera uma lista de todos os produtos de renda fixa.
+
+**Requisitos de Autorização**: Deve ter a permissão `Ler` para a entidade `RendaFixa`.
+
+**Resposta**:
+- **200 OK**: Retorna uma lista de produtos de renda fixa.
+- **400 Bad Request**: Se houver um erro na requisição.
+
+---
+
+### Autenticação e Registro de Usuário
+
+#### Login
+
+**Método**: POST /api/login
+
+**Descrição**: Realiza o login de um usuário e retorna um JWT se as credenciais forem válidas.
+
+**Parâmetros**:
+- **Request Body**: `LoginRequest` - Objeto contendo o login e senha do usuário.
+
+**Resposta**:
+- **200 OK**: Retorna um JWT se o login for bem-sucedido.
+- **400 Bad Request**: Se houver erros de validação.
+- **401 Unauthorized**: Se as credenciais estiverem incorretas ou o usuário estiver bloqueado.
+
+---
+
+#### Registrar Novo Usuário Administrador
+
+**Método**: POST /api/ContaAdmin
+
+**Descrição**: Registra um novo usuário administrador no sistema.
+
+**Requisitos de Autorização**: Nenhum (requer autenticação do administrador).
+
+**Parâmetros**:
+- **Request Body**: `CreateUserAdminRequest` - Objeto contendo os dados necessários para criar um novo usuário administrador.
+
+**Resposta**:
+- **200 No Content**: Se o usuário for registrado com sucesso.
+- **400 Bad Request**: Se houver erros de validação.
+
+---
+
+## Notas Adicionais
+
+- **CustomResponse**: Utilizado para padronizar as respostas da API com base nos resultados das operações.
+- **ClaimsAuthorize**: Utilizado para garantir que os usuários tenham as permissões necessárias para acessar os endpoints.
+
+Este é um resumo dos principais endpoints disponíveis na aplicação. Para detalhes adicionais sobre como configurar e utilizar a API, consulte a documentação completa ou o código fonte.
+
