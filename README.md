@@ -349,16 +349,8 @@ dotnet test
 
 **Requisitos de Autorização**: Deve ser um cliente.
 
-**Parâmetros**:
-- **Request Body**:
-```json
-{
-  "produtoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "nomeProduto": "string",
-  "quantidade": 0,
-  "valorUnitario": 0
-}
-```
+
+
 **Resposta**:
 - **200 OK**: Retorna os dados do cliente.
 - **400 Bad Request**: Se houver erros de validação.
@@ -373,16 +365,7 @@ dotnet test
 
 **Requisitos de Autorização**: Deve ser um administrador.
 
-**Parâmetros**:
-- **Request Body**:
-```json
-{
-  "produtoId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-  "nomeProduto": "string",
-  "quantidade": 0,
-  "valorUnitario": 0
-}
-```
+
 **Resposta**:
 - **200 OK**: Retorna os dados do cliente.
 - **400 Bad Request**: Se houver erros de validação.
