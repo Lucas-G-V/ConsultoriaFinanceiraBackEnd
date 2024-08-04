@@ -30,15 +30,15 @@ namespace XpInc.RendaFixa.API.Services
                 var email = scope.ServiceProvider.GetRequiredService<IEmailService>();
 
 
-                //await email.EnviaEmail(
-                //    "lucasgvettorazzo@hotmail.com",
-                //    "Lucas",
-                //    "lucasgvettorazzo1505@gmail.com",
-                //    "Consultoria Financeira",
-                //    "Produtos Vencendo",
-                //    "Estes produtos estão prestes a vencer",
-                //    "<div>Estes produtos estão prestes a vencer</div>"
-                //);
+                await email.EnviaEmail(
+                    "lucasgvettorazzo@hotmail.com",
+                    "Lucas",
+                    "lucasgvettorazzo1505@gmail.com",
+                    "Consultoria Financeira",
+                    "Produtos Vencendo",
+                    "Estes produtos estão prestes a vencer",
+                    "<div>Estes produtos estão prestes a vencer</div>"
+                );
             }
         }
 

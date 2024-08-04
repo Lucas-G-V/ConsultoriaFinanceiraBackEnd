@@ -11,7 +11,7 @@ namespace XpInc.Email
 {
     public class EmailService : IEmailService
     {
-        private readonly string SendGridToken = "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";
+        private readonly string SendGridToken = "";
         public EmailService()
         {
         }
